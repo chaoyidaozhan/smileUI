@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import smileUi from './component/smile-ui.vue'
+import smileUi from './component/main.vue'
 export default {
     name: 'app',
     components:{smileUi},
@@ -19,12 +19,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .smile-title{
-        color:red
-    }
-    .smile-words{
-        color:green
-
-    }
-</style>

@@ -1,11 +1,14 @@
 
-const path = require("path");
-const webpack = require("webpack");
-const uglify = require("uglifyjs-webpack-plugin");
-const APP_PATH = path.resolve(__dirname, '../'); 
+const path = require('path')
+const webpack = require('webpack')
+const APP_PATH = path.resolve(__dirname, '../')
+const APP_SRC = path.join(APP_PATH, '/src')
 const NODE_ENV = process.env.NODE_ENV
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+    mode: 'none',
     // devtool: 'source-map',
     entry: NODE_ENV === 'development' ? './src/index.js' : './src/main.js',//入口文件，就是上步骤的src目录下的index.js文件，
     output: {
@@ -17,16 +20,38 @@ module.exports = {
         umdNamedDefine: true
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        'css': [
+                            'vue-style-loader',
+                            'css-loader'
+                        ],
+                        'less': [
+                            'vue-style-loader',
+                            'less-loader'
+                        ],
+                    }
+                },
+                include: APP_SRC,
+                exclude: /^node_modules$/,
             },
             {
                 test: /\.less$/,
                 use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" },
-                    { loader: "less-loader" }
+                    { loader: 'vue-style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: 'vue-style-loader' },
+                    { loader: 'css-loader' },
                 ]
             },
             {
@@ -45,10 +70,17 @@ module.exports = {
         ]
     },
     plugins: [
+        new VueLoaderPlugin(),
         new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
             }
+        }),
+        new htmlWebpackPlugin({
+            minify:{
+                removeAttributeQuotes:true
+            },
+            template: path.resolve(APP_PATH, './src/template/index.html')
         })
     ]
-};
+}
