@@ -1,19 +1,35 @@
 <template>
     <div>
         <smile-start>
-            <div slot="smile-title" class="smile-title">hello</div>
-            <div slot="smile-words" class="smile-words">welcome to the smile world!</div>
+            <div slot='smile-title' class='smile-title'>hello</div>
+            <div slot='smile-words' class='smile-words'>welcome to the smile world!</div>
         </smile-start>
+        <smile-printer
+            :list='list'
+            :isConnect='isConnect'
+        />
     </div>
 </template>
 <script>
 import smileStart from './smile-start/index.vue'
+import smilePrinter from 'app_common_path/smile-printer'
 export default {
     name: 'smileUI',
-    components:{smileStart},
+    components:{smileStart,smilePrinter},
     data(){
         return{
-
+            list:[
+                {
+                    name:'实例1',
+                    mark:'备注1',
+                    isCon:0
+                },
+                {
+                    name:'实例2',
+                    mark:'备注2',
+                    isCon:1
+                }
+            ]
         }
     },
     methods:{

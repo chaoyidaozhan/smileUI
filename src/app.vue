@@ -1,14 +1,14 @@
 <template>
     <div>
-        <smile-ui>
-        </smile-ui>
+        <Main>
+        </Main>
     </div>
 </template>
 <script>
-import smileUi from './component/main.vue'
+import Main from './component/main.vue'
 export default {
     name: 'app',
-    components:{smileUi},
+    components:{Main},
     data(){
         return{
 
