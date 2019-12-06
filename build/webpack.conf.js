@@ -12,7 +12,7 @@ const copyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     mode: 'none',
-    devtool: '#cheap-module-eval-source-map',
+    devtool: '#cheap-module-eval-source-map',//打包后代码和写的完全一致
     entry: NODE_ENV === 'development' ? './src/index.js' : './src/main.js',//入口文件，就是上步骤的src目录下的index.js文件，
     output: {
         path: path.resolve(APP_PATH, './dist'),//输出路径，就是上步骤中新建的dist目录，
@@ -80,6 +80,7 @@ module.exports = {
         ]
     },
     plugins: [
+        //vue-loader15必用
         new VueLoaderPlugin(),
         new webpack.DefinePlugin({
             'process.env': {

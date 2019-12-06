@@ -11,11 +11,11 @@
     </div>
 </template>
 <script>
-import smileStart from './smile-start/index.vue'
-import smilePrinter from 'app_common_path/smile-printer'
+// import smileStart from './smile-start/src/index.vue'
+// import smilePrinter from 'app_common_path/smile-printer/src'
 export default {
     name: 'smileUI',
-    components:{smileStart,smilePrinter},
+    // components:{smileStart,smilePrinter},
     data(){
         return{
             list:[

@@ -23,7 +23,45 @@
         </div>
     </div>
 </template>
-<script src='./smile-printer.js'/>
+<script>
+export default  {
+    name:'smilePrinter',
+
+    props:{
+        /**
+         *list 传递参数 {name,mark,isCon}
+         *name:显示的主要内容 String
+         *mark：显示的备注信息 String
+         *isCon：是否连接 Number
+         */
+        list:{
+            type:Array,
+            default:[]
+        },
+        isConnect:{
+            type:Object,
+            default:() => ({
+                close: '未连接',
+                open: '已连接'
+            })
+        }
+    },
+    data(){
+        return{
+           
+        }
+    },
+    methods:{
+
+    },
+
+    created(){
+        // for(let [index,item] of this.list.entries()){
+
+        // }
+    },
+}
+</script>
 <style lang='less' scoped>
     .smile-printer {
         border:1px #E9E9E9 solid; 
@@ -41,7 +79,7 @@
                 transform: translate(-50%,-50%);
                 width: 46px;
                 height: 46px;
-                background: url('~/copyasset/bluetoothClose.png') no-repeat 50% 50%;
+                background: url('APP_SRC/asset/images/bluetooth_close.png') no-repeat 50% 50%;
                 border:1px #e9e9e9 dashed;
                 float: left;
             }
@@ -99,4 +137,3 @@
         }
     }
 </style>
-

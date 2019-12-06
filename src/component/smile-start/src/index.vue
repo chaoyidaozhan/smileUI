@@ -4,8 +4,11 @@
         <slot name="smile-words"></slot>
     </span>
 </template>
+<script>
+export default {
+    name:'smileStart'
+}
+</script>
 <style scoped>
     
 </style>
-<script src="./smile-start.js" type="text/javascript">
-</script>
