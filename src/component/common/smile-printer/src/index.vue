@@ -79,7 +79,7 @@ export default  {
                 transform: translate(-50%,-50%);
                 width: 46px;
                 height: 46px;
-                background: url('APP_SRC/asset/images/bluetooth_close.png') no-repeat 50% 50%;
+                background: url('../../../../asset/images/bluetooth_close.png') no-repeat 50% 50%;
                 border:1px #e9e9e9 dashed;
                 float: left;
             }
