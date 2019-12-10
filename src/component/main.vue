@@ -1,13 +1,21 @@
 <template>
     <div>
-        <smile-start>
+        <!-- <smile-start>
             <div slot='smile-title' class='smile-title'>hello</div>
             <div slot='smile-words' class='smile-words'>welcome to the smile world!</div>
         </smile-start>
         <smile-printer
             :list='list'
             :isConnect='isConnect'
-        />
+        /> -->
+        <smile-tab @tab-click="handleClick">
+            <smile-tab-pane
+                label="用户管理" name="first"
+            >用户管理</smile-tab-pane>
+            <smile-tab-pane
+                label="角色管理" name="second"
+            >角色管理</smile-tab-pane>
+        </smile-tab>
     </div>
 </template>
 <script>
@@ -18,22 +26,13 @@ export default {
     // components:{smileStart,smilePrinter},
     data(){
         return{
-            list:[
-                {
-                    name:'实例1',
-                    mark:'备注1',
-                    isCon:0
-                },
-                {
-                    name:'实例2',
-                    mark:'备注2',
-                    isCon:1
-                }
-            ]
+            activeName: 'second'
         }
     },
     methods:{
-
+        handleClick(tab, event){
+            console.log(tab, event)
+        }
     }
 }
 </script>
