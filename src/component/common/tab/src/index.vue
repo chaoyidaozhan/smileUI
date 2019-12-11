@@ -3,15 +3,16 @@ export default {
     name:'smileTab',
     props:{
       activeName: String,
+      value:{},
       tabPosition: {
           type:String,
           default:'top'
-      }
+      },
     },
     data(){
         return{
-            panes: []
-
+            panes: [],
+            currentName: this.value || this.activeName
         }
     },
     watch:{
@@ -24,7 +25,6 @@ export default {
             
         },
         calcPaneInstances(isForceUpdate = false) {
-            debugger
             if (this.$slots.default) {
             const paneSlots = this.$slots.default.filter(vnode => vnode.tag &&
                 vnode.componentOptions && vnode.componentOptions.Ctor.options.name === 'smile-tab-pane');
@@ -41,10 +41,17 @@ export default {
     },
     render(h){
         let {
-            tabPosition
+            tabPosition,
+            currentName
         } = this;
+        const navData = {
+            props:{
+                currentName:currentName
+            }
+        }
         const header = (
             <div class={['smile-tab-headers',`is-${tabPosition}`]}>
+                <smile-tab-nav {...navData}></smile-tab-nav>
             </div>
         )
         // {this.$slots.default}就是这个组件里面所包含着的内容

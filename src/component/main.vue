@@ -8,7 +8,7 @@
             :list='list'
             :isConnect='isConnect'
         /> -->
-        <smile-tab @tab-click="handleClick">
+        <smile-tab v-model="activeName" @tab-click="handleClick">
             <smile-tab-pane
                 label="用户管理" name="first"
             >用户管理</smile-tab-pane>
