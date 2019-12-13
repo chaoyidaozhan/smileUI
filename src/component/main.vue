@@ -1,16 +1,17 @@
 <template>
     <div>
-        <smile-start>
+        <!-- <smile-start>
             <div slot='smile-title' class='smile-title'>hello</div>
             <div slot='smile-words' class='smile-words'>welcome to the smile world!</div>
         </smile-start>
         <smile-printer
             :list='list'
             :isConnect='isConnect'
-        />
+        /> -->
     </div>
 </template>
 <script>
+import * as PIXI from 'pixi.js'
 // import smileStart from './smile-start/src/index.vue'
 // import smilePrinter from 'app_common_path/smile-printer/src'
 export default {
@@ -33,6 +34,45 @@ export default {
         }
     },
     methods:{
+
+    },
+    mounted(){
+        debugger
+        const app = new PIXI.Application({
+            width: 800, height: 600, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
+        });
+        document.body.appendChild(app.view);
+
+        const container = new PIXI.Container();
+
+        app.stage.addChild(container);
+
+        // 加载一个图片
+        const texture = PIXI.Texture.from('copyasset/bluetooth_close.png');
+
+        // 创建一个5x5的图片表
+        for (let i = 0; i < 25; i++) {
+            const bunny = new PIXI.Sprite(texture);
+            bunny.anchor.set(0.5);
+            bunny.x = (i % 5) * 40;
+            bunny.y = Math.floor(i / 5) * 40;
+            container.addChild(bunny);
+        }
+
+        // 把图片移到中心
+        container.x = app.screen.width / 2;
+        container.y = app.screen.height / 2;
+
+        // Center bunny sprite in local container coordinates
+        container.pivot.x = container.width / 2;
+        container.pivot.y = container.height / 2;
+
+        // Listen for animate update
+        app.ticker.add((delta) => {
+            // rotate the container!
+            // use delta to create frame-independent transform
+            container.rotation -= 0.01 * delta;
+        });
 
     }
 }
